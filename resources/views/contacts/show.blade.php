@@ -25,5 +25,10 @@
                 {{ $contact->telephone }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Image:</strong>
+            </div><img src="{{asset('images/'.$contact->image)}}" width = 100 alt="">
+        </div>
     </div>
 @endsection

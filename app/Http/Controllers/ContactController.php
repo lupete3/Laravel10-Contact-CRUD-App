@@ -31,14 +31,26 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Contact $contact, Request $request): RedirectResponse
     {
         $request->validate([
             'nom' => 'required',
             'telephone' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Contact::create($request->all());
+        $nom = $request->nom;
+        $telephone = $request->telephone;
+
+        $imageName = time().'.'.$request->image->extension();  
+           
+        $request->image->move(public_path('images'), $imageName);
+
+        $contact->nom = $nom;
+        $contact->telephone = $telephone;
+        $contact->image = $imageName;
+                  
+        $contact->save();
          
         return redirect()->route('contacts.index')
                         ->with('success','Contact créé avec succès.');

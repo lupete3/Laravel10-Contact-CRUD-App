@@ -17,5 +17,6 @@ class Contact extends Model
     protected $fillable = [
         'nom',
         'telephone',
+        'image',
     ];
 }

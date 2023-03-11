@@ -23,6 +23,7 @@
             <th>No</th>
             <th>Nom</th>
             <th>Téléphone</th>
+            <th>Image</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($contacts as $contact)
@@ -30,6 +31,7 @@
             <td>{{ ++$i }}</td>
             <td>{{ $contact->nom }}</td>
             <td>{{ $contact->telephone }}</td>
+            <td><img src="{{asset('images/'.$contact->image)}}" width = 100 alt=""></td>
             <td>
                 <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
    
